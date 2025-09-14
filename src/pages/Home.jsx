@@ -91,7 +91,7 @@ export default function Home() {
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-800/70"></div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+    <div className="relative w-full px-0 py-20 sm:py-28">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
               Care Faster. Save Lives Smarter.

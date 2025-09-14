@@ -34,12 +34,10 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="w-full px-0">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
-            </div>
+          <Link to="/" className="text-xl font-bold text-gray-900 flex items-center gap-2 pl-4">
+            <img src={require('../images/logo.svg').default} alt="HealthTrack Logo" className="w-8 h-8" />
             HealthTrack
           </Link>
           

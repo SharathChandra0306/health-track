@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Phone, Star, Bed, Clock, Filter, Search as SearchIcon, Ambulance, FileText, User, Settings, AlertTriangle, Heart, Activity } from 'lucide-react';
+import { MapPin, Phone, Star, Bed, Filter, Search as SearchIcon, Ambulance, FileText, User, Settings, AlertTriangle } from 'lucide-react';
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -68,21 +68,9 @@ export default function Search() {
 
   // Filter hospitals based on search query and filters
   useEffect(() => {
-    let filtered = hospitals.filter(hospital => {
-      const matchesQuery = hospital.name.toLowerCase().includes(query.toLowerCase()) ||
-                          hospital.location.city.toLowerCase().includes(query.toLowerCase()) ||
-                          hospital.specialties.some(s => s.toLowerCase().includes(query.toLowerCase()));
-      
-      const matchesType = filters.hospitalType === 'All' || hospital.type === filters.hospitalType;
-      const matchesSpecialty = filters.specialty === 'All' || hospital.specialties.includes(filters.specialty);
-      const matchesFacility = filters.facility === 'All' || hospital.facilities.includes(filters.facility);
-      const matchesStatus = filters.status === 'All' || hospital.status === filters.status;
-      const matchesRadius = hospital.distance <= filters.radius;
+  // ...existing code...
 
-      return matchesQuery && matchesType && matchesSpecialty && matchesFacility && matchesStatus && matchesRadius;
-    });
-
-    setFilteredHospitals(filtered);
+  // ...existing code...
   }, [hospitals, query, filters]);
 
   const handleFilterChange = (filterName, value) => {

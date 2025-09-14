@@ -1,20 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Button, Card, Input, Select } from '../components/ui';
-import { Link } from 'react-router-dom';
 import { useTracker } from '../hooks/useTracker';
 import { 
-  Bed, 
-  Calendar, 
-  Clock, 
-  User, 
-  Phone, 
-  MapPin, 
+  Bed,
+  Phone,
+  MapPin,
   CheckCircle,
-  AlertCircle,
   Search,
   Filter,
-  Star,
-  Heart
+  Star
 } from 'lucide-react';
 
 export default function BookBed() {
@@ -48,12 +42,6 @@ export default function BookBed() {
     'Urology', 'Pulmonology', 'Pediatrics', 'Maternity', 'Emergency Care'
   ];
 
-  const urgencyLevels = [
-    { value: 'critical', label: 'Critical (Immediate)', color: 'red' },
-    { value: 'urgent', label: 'Urgent (Within 24 hours)', color: 'orange' },
-    { value: 'moderate', label: 'Moderate (Within 3 days)', color: 'yellow' },
-    { value: 'planned', label: 'Planned (Within 1 week)', color: 'green' }
-  ];
 
   useEffect(() => {
     let mounted = true;
@@ -85,10 +73,6 @@ export default function BookBed() {
     setFilteredHospitals(filtered);
   }, [hospitals, searchQuery, filters]);
 
-  const getAvailableBeds = (hospital, bedType) => {
-    const bed = hospital.beds.find(b => b.type === bedType);
-    return bed ? bed.available : 0;
-  };
 
   const getTotalBeds = (hospital) => {
     return hospital.beds.reduce((total, bed) => total + bed.available, 0);
@@ -118,12 +102,12 @@ export default function BookBed() {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
-          <Button 
-            variant="secondary" 
+          <Button
+            variant="secondary"
             onClick={() => setSelectedHospital(null)}
             className="mb-4"
           >
-            ← Back to Hospitals
+             Back to Hospitals
           </Button>
           <h1 className="text-3xl font-bold text-gray-900">Book Bed at {selectedHospital.name}</h1>
         </div>
