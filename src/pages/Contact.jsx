@@ -11,26 +11,22 @@ export default function Contact() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-6">
-      <div className="md:col-span-2">
-        <Card className="p-6">
-          <h1 className="text-xl font-semibold text-gray-900">Contact Us</h1>
-          <form className="mt-6 grid gap-4" onSubmit={handleSubmit(onSubmit)}>
-            <Input label="Name" placeholder="Your name" error={errors.name?.message} {...register('name', { required: 'Required' })} />
-            <Input label="Email Address" type="email" placeholder="Your email" error={errors.email?.message} {...register('email', { required: 'Required' })} />
-            <Input label="Subject" placeholder="General inquiry" {...register('subject')} />
-            <label className="block">
-              <span className="block text-sm font-medium text-gray-700 mb-1">Message</span>
-              <textarea className="w-full rounded-md border-gray-300 focus:border-primary focus:ring-primary px-3 py-2 text-sm" rows="4" {...register('message')} />
-            </label>
-            <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Submit'}</Button>
+    <div className="w-full px-0 min-h-screen bg-gray-50">
+      <section className="max-w-4xl mx-auto py-16 px-4">
+        <div className="flex items-center gap-3 mb-8">
+          <img src={require('../images/logo.svg').default} alt="HealthTrack Logo" className="w-10 h-10" />
+          <h1 className="text-3xl font-bold text-gray-900">Contact Us</h1>
+        </div>
+        <div className="bg-white rounded-xl shadow p-6">
+          <h2 className="text-xl font-semibold text-blue-700 mb-4">Get in Touch</h2>
+          <form className="flex flex-col gap-4">
+            <input type="text" placeholder="Your Name" className="border rounded-lg px-4 py-2" required />
+            <input type="email" placeholder="Your Email" className="border rounded-lg px-4 py-2" required />
+            <textarea placeholder="Your Message" className="border rounded-lg px-4 py-2" rows={4} required />
+            <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition">Send Message</button>
           </form>
-        </Card>
-      </div>
-      <div className="space-y-4">
-        <Card className="p-4">support@healthtrack.com</Card>
-        <Card className="p-4">+1 555 123 4567</Card>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

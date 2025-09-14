@@ -21,6 +21,10 @@ import EMS from './pages/EMS';
 import BookBed from './pages/BookBed';
 import MedicalRecords from './pages/MedicalRecords';
 import EmergencyContacts from './pages/EmergencyContacts';
+import Product from './pages/Product';
+import Features from './pages/Features';
+import Support from './pages/Support';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -43,6 +47,10 @@ function App() {
               <Route path="/book-bed" element={<BookBed />} />
               <Route path="/medical-records" element={<MedicalRecords />} />
               <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="/privacy" element={<Privacy />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

@@ -44,7 +44,10 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             <NavItem to="/">Home</NavItem>
+            <NavItem to="/product">Product</NavItem>
+            <NavItem to="/features">Features</NavItem>
             <NavItem to="/about">About</NavItem>
+            <NavItem to="/support">Support</NavItem>
             <NavItem to="/search" icon={Search}>Search</NavItem>
             {isAuthenticated && (
               <>
@@ -55,6 +58,7 @@ export default function Navbar() {
               </>
             )}
             <NavItem to="/contact">Contact</NavItem>
+            <NavItem to="/privacy">Privacy Policy</NavItem>
           </nav>
 
           {/* User Menu */}
@@ -121,7 +125,10 @@ export default function Navbar() {
           <div className="lg:hidden border-t border-gray-200 py-4">
             <nav className="space-y-1">
               <NavItem to="/">Home</NavItem>
+              <NavItem to="/product">Product</NavItem>
+              <NavItem to="/features">Features</NavItem>
               <NavItem to="/about">About</NavItem>
+              <NavItem to="/support">Support</NavItem>
               <NavItem to="/search" icon={Search}>Search</NavItem>
               {isAuthenticated && (
                 <>
@@ -134,6 +141,7 @@ export default function Navbar() {
                 </>
               )}
               <NavItem to="/contact">Contact</NavItem>
+              <NavItem to="/privacy">Privacy Policy</NavItem>
               {!isAuthenticated && (
                 <div className="pt-4 border-t border-gray-200 space-y-2">
                   <Link 
