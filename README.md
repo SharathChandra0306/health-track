@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# HealthTrack Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fully functional, responsive React + Tailwind frontend matching the provided UI designs, with clear placeholders for backend integration.
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+1. Install dependencies:
+   - `npm install`
+2. Start dev server:
+   - `npm start`
 
-### `npm start`
+## Folder Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+  components/      reusable UI (Navbar, Footer, ui.jsx)
+  pages/           routed pages (Home, About, Search, HospitalDetails, Login, Signup, Contact, ProfileSettings, Dashboard)
+  hooks/           useAuth, useUser, useTracker, apiClient (mock)
+  context/         AuthContext provider
+  mock/            mock data JSON
+  index.js, index.css, App.js
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend Integration Guide
 
-### `npm test`
+- All API access flows through hooks in `src/hooks/`.
+- Replace mock functions with real endpoints:
+  - `useAuth.js`
+    - Replace login/signup calls with `POST /api/login` and `POST /api/signup`.
+  - `useUser.js`
+    - Replace `fetchUser()` with real `GET /api/user`.
+    - Replace `updateUser()` with `PUT /api/user`.
+  - `useTracker.js`
+    - Replace `listHospitals()` with `GET /api/hospitals`.
+    - Replace `getHospitalById(id)` with `GET /api/hospitals/:id`.
+- `apiClient.js` shows a commented example of swapping to Axios:
+  - Example: Replace `mockGet('/user')` with `api.get('/user')` and return the data.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Forms and Validation
 
-### `npm run build`
+- Forms use `react-hook-form` with basic required/min-length validation.
+- Submit handlers contain `// TODO` comments indicating exact endpoints to wire.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Responsiveness
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Tailwind responsive classes (`sm: md: lg: xl:`) are used across pages.
+- Assumptions: standard container width at `max-w-7xl`, cards use `shadow-card`, buttons use `primary` brand color `#17B2E5` to match designs.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Notes
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- All data currently comes from `src/mock/data.json` via hooks. Replace with real APIs when ready.
