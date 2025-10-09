@@ -1,7 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import EmergencyChatbot from './EmergencyChatbot';
 import { 
   Menu, 
   X, 
@@ -12,8 +11,7 @@ import {
   FileText, 
   Phone,
   Settings,
-  LogOut,
-  AlertTriangle
+  LogOut
 } from 'lucide-react';
 
 const NavItem = ({ to, children, icon: Icon }) => (
@@ -32,7 +30,6 @@ const NavItem = ({ to, children, icon: Icon }) => (
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isEmergencyChatbotOpen, setIsEmergencyChatbotOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
 
   return (
@@ -64,14 +61,7 @@ export default function Navbar() {
             <NavItem to="/privacy">Privacy Policy</NavItem>
           </nav>
 
-          {/* Emergency Button */}
-          <button
-            onClick={() => setIsEmergencyChatbotOpen(true)}
-            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium transition-colors mr-4"
-          >
-            <AlertTriangle className="w-4 h-4" />
-            <span className="hidden sm:inline">Emergency</span>
-          </button>
+
 
           {/* User Menu */}
           <div className="flex items-center gap-2">
@@ -136,17 +126,6 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4">
             <nav className="space-y-1">
-              {/* Mobile Emergency Button */}
-              <button
-                onClick={() => {
-                  setIsEmergencyChatbotOpen(true);
-                  setIsMenuOpen(false);
-                }}
-                className="w-full bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md flex items-center gap-2 text-sm font-medium mb-4"
-              >
-                <AlertTriangle className="w-4 h-4" />
-                Emergency Assistance
-              </button>
               
               <NavItem to="/">Home</NavItem>
               <NavItem to="/product">Product</NavItem>
@@ -187,11 +166,7 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* Emergency Chatbot */}
-      <EmergencyChatbot 
-        isOpen={isEmergencyChatbotOpen} 
-        onClose={() => setIsEmergencyChatbotOpen(false)} 
-      />
+
     </header>
   );
 }
