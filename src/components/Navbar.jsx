@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import EmergencyChatbot from './EmergencyChatbot';
 import { 
   Menu, 
   X, 
@@ -11,7 +12,8 @@ import {
   FileText, 
   Phone,
   Settings,
-  LogOut
+  LogOut,
+  AlertTriangle
 } from 'lucide-react';
 
 const NavItem = ({ to, children, icon: Icon }) => (
@@ -30,10 +32,11 @@ const NavItem = ({ to, children, icon: Icon }) => (
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isEmergencyChatbotOpen, setIsEmergencyChatbotOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
   <div className="w-full px-0">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="text-xl font-bold text-gray-900 flex items-center gap-2 pl-4">
@@ -60,6 +63,15 @@ export default function Navbar() {
             <NavItem to="/contact">Contact</NavItem>
             <NavItem to="/privacy">Privacy Policy</NavItem>
           </nav>
+
+          {/* Emergency Button */}
+          <button
+            onClick={() => setIsEmergencyChatbotOpen(true)}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center gap-2 text-sm font-medium transition-colors mr-4"
+          >
+            <AlertTriangle className="w-4 h-4" />
+            <span className="hidden sm:inline">Emergency</span>
+          </button>
 
           {/* User Menu */}
           <div className="flex items-center gap-2">
@@ -124,6 +136,18 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-4">
             <nav className="space-y-1">
+              {/* Mobile Emergency Button */}
+              <button
+                onClick={() => {
+                  setIsEmergencyChatbotOpen(true);
+                  setIsMenuOpen(false);
+                }}
+                className="w-full bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md flex items-center gap-2 text-sm font-medium mb-4"
+              >
+                <AlertTriangle className="w-4 h-4" />
+                Emergency Assistance
+              </button>
+              
               <NavItem to="/">Home</NavItem>
               <NavItem to="/product">Product</NavItem>
               <NavItem to="/features">Features</NavItem>
@@ -162,6 +186,12 @@ export default function Navbar() {
           </div>
         )}
       </div>
+
+      {/* Emergency Chatbot */}
+      <EmergencyChatbot 
+        isOpen={isEmergencyChatbotOpen} 
+        onClose={() => setIsEmergencyChatbotOpen(false)} 
+      />
     </header>
   );
 }

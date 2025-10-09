@@ -8,6 +8,7 @@ import {
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import NavigationBot from './components/NavigationBot';
 import Home from './pages/Home';
 import About from './pages/About';
 import Search from './pages/Search';
@@ -55,6 +56,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <NavigationBot />
         </div>
       </Router>
     </AuthProvider>

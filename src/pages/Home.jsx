@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button, Card } from '../components/ui';
+import LocationBasedHospitals from '../components/LocationBasedHospitals';
 import hospitalImage from '../images/image.png';
 import { 
   MapPin, 
@@ -112,6 +113,13 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Location-Based Hospitals Section */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <LocationBasedHospitals />
         </div>
       </section>
 

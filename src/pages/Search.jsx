@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapPin, Phone, Star, Bed, Filter, Search as SearchIcon, Ambulance, FileText, User, Settings, AlertTriangle } from 'lucide-react';
+import { MapPin, Phone, Star, Bed, Filter, Search as SearchIcon, Ambulance, FileText, User, Settings, AlertTriangle, Navigation } from 'lucide-react';
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -139,6 +139,35 @@ export default function Search() {
         </p>
       </div>
 
+      {/* Emergency Alert Banner */}
+      <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <AlertTriangle className="w-5 h-5 text-red-600 mr-3" />
+            <div>
+              <h3 className="text-sm font-semibold text-red-900">Medical Emergency?</h3>
+              <p className="text-sm text-red-700">Get immediate assistance and find nearby hospitals</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <a href="tel:911" className="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700">
+              📞 Call 911
+            </a>
+            <Button 
+              size="sm" 
+              className="bg-orange-600 hover:bg-orange-700"
+              onClick={() => {
+                // This will be handled by the emergency button in navbar
+                // For now, redirect to emergency page
+                window.location.href = '/ems';
+              }}
+            >
+              🚨 Get Help
+            </Button>
+          </div>
+        </div>
+      </div>
+
       {/* Quick Actions for Authenticated Users */}
       {isAuthenticated && (
         <Card className="p-6 mb-6">
@@ -188,12 +217,12 @@ export default function Search() {
           </Card>
 
           {/* Map */}
-          <Card className="p-0 overflow-hidden">
+          <Card className="p-0 overflow-hidden relative z-10">
             <div className="h-96 w-full">
               <MapContainer
                 center={mapCenter}
                 zoom={mapZoom}
-                style={{ height: '100%', width: '100%' }}
+                style={{ height: '100%', width: '100%', zIndex: 10 }}
                 scrollWheelZoom={true}
               >
                 <TileLayer
@@ -299,6 +328,16 @@ export default function Search() {
                           <Button size="sm" className="w-full">
                             <Phone className="w-3 h-3 mr-1" />
                             Call
+                          </Button>
+                        </a>
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(hospital.name + ', ' + hospital.location.address)}&travelmode=driving`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
+                            <Navigation className="w-3 h-3 mr-1" />
+                            Directions
                           </Button>
                         </a>
                       </div>
